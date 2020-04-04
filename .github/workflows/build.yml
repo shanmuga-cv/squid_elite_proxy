@@ -7,6 +7,9 @@ name: CI
 on:
   push:
     branches: [ master ]
+    paths-ignore: 
+      - '.github/**'
+      - 'README.md'
   pull_request:
     branches: [ master ]
 
@@ -23,7 +26,7 @@ jobs:
 
     - name: tag annd push image
       run: |
-        docker tag squid_elite:latest shanmugacv/squid_elite_proxy:tagname
+        docker tag squid_elite:latest shanmugacv/squid_elite_proxy:latest
         docker login --username $DOCKER_USER --password $DOCKER_TOKEN
         docker push shanmugacv/squid_elite_proxy:tagname
         docker logout
