@@ -8,7 +8,6 @@ on:
   push:
     branches: [ master ]
     paths-ignore: 
-      - '.github/**'
       - 'README.md'
   pull_request:
     branches: [ master ]
@@ -24,11 +23,11 @@ jobs:
     - name: build image
       run: docker-compose build
 
-    - name: tag annd push image
+    - name: tag and push image
       run: |
         docker tag squid_elite:latest shanmugacv/squid_elite_proxy:latest
         docker login --username $DOCKER_USER --password $DOCKER_TOKEN
-        docker push shanmugacv/squid_elite_proxy:tagname
+        docker push shanmugacv/squid_elite_proxy:latest
         docker logout
       env:
         DOCKER_USER: ${{ secrets.docker_user }}
