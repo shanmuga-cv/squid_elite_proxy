@@ -24,9 +24,8 @@ jobs:
     - name: build image
       run: docker build . -t shanmugacv/squid_elite_proxy:latest
 
-    - name: tag and push image
+    - name: push image
       run: |
-        docker tag squid_elite:latest shanmugacv/squid_elite_proxy:latest
         docker login --username $DOCKER_USER --password $DOCKER_TOKEN
         docker push shanmugacv/squid_elite_proxy:latest
         docker logout
