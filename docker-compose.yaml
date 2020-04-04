@@ -1,0 +1,8 @@
+version: "3"
+
+services:
+  elite_proxy:
+    build: .
+    image: squid_elite
+    ports:
+      - "3128:3128"
