@@ -18,14 +18,15 @@ jobs:
     steps:
     - uses: actions/checkout@v2
 
-    - name: Run a one-line script
+    - name: build image
       run: docker-compose build
 
-    - name: Run a multi-line script
+    - name: tag annd push image
       run: |
         docker tag squid_elite:latest shanmugacv/squid_elite_proxy:tagname
         docker login --username $DOCKER_USER --password $DOCKER_TOKEN
         docker push shanmugacv/squid_elite_proxy:tagname
+        docker logout
       env:
         DOCKER_USER: ${{ secrets.docker_user }}
         DOCKER_TOKEN: ${{ secrets.docker_token }}
